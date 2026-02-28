@@ -25,9 +25,9 @@ import torch.distributed as dist
 
 try:
     # NPU patch
-    import mindspeed.megatron_adaptor  # noqa: F401
+    from verl.workers.engine.mindspeed.transformer_impl import repatch  # noqa: F401
 except ImportError:
-    pass
+    repatch = None
 
 from accelerate import init_empty_weights
 from megatron.core import mpu

@@ -14,6 +14,7 @@
 # limitations under the License.
 
 try:
+    from verl.workers.engine.mindspeed.transformer_impl import repatch
     from megatron.bridge import AutoBridge
     from megatron.bridge.models.conversion.param_mapping import AutoMapping
     from megatron.bridge.peft.canonical_lora import CanonicalLoRA

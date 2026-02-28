@@ -255,8 +255,11 @@ class ActorRolloutRefWorker(MegatronWorker, DistProfilerExtension):
         Worker.__init__(self)
         self.config = config
         if repatch is not None:
-            # NPU MindSpeed patch, will be refactored with MindSpeedEngine.
-            repatch(self.config.actor.megatron.get("override_transformer_config", {}))
+            try:
+                # NPU MindSpeed patch, will be refactored with MindSpeedEngine.
+                repatch(self.config.actor.megatron.get("override_transformer_config", {}))
+            except ImportError:
+                pass
 
         self.role = role
         assert self.role in ["actor", "rollout", "ref", "actor_rollout", "actor_rollout_ref"]
